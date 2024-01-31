@@ -3,6 +3,7 @@ package com.comumu.hmj.home.domain.home;
 import com.comumu.hmj.post.domain.PostEntity;
 import com.comumu.hmj.post.domain.PostFunctionality;
 import com.comumu.hmj.user.domain.Gender;
+import com.comumu.hmj.user.domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -24,6 +25,10 @@ public class Home extends PostEntity {
     @GeneratedValue
     @Column(name = "home_id")
     private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @JsonIgnore
     @OneToMany(mappedBy = "home" , cascade = CascadeType.PERSIST, orphanRemoval = true)
