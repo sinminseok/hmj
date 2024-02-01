@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class HomeImage {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "home_image_id")
     private Long id;
 

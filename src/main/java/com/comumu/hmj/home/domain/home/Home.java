@@ -15,14 +15,11 @@ import java.util.List;
 
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@NoArgsConstructor
 public class Home extends PostEntity {
 
-    //구현체 생성해서 외부에서 주입, 어느 계층에서 주입할지 고민해보자
-    private PostFunctionality postFunctionality;
-
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "home_id")
     private Long id;
 
