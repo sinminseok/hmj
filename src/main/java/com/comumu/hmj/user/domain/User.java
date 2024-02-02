@@ -26,11 +26,11 @@ public class User {
     private Set<Authority> authorities;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user",cascade = CascadeType.PERSIST,orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Home> homes;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user",cascade = CascadeType.PERSIST,orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Job> jobs;
 
     private String username;
