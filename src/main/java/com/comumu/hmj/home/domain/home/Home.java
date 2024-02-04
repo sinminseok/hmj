@@ -1,12 +1,10 @@
 package com.comumu.hmj.home.domain.home;
 
 import com.comumu.hmj.post.domain.PostEntity;
-import com.comumu.hmj.post.domain.PostFunctionality;
 import com.comumu.hmj.user.domain.Gender;
 import com.comumu.hmj.user.domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -63,5 +61,7 @@ public class Home extends PostEntity {
     private boolean canAnimal;
 
     private HomeStatus homeStatus;
+
+
 
 }

@@ -4,12 +4,18 @@ import com.comumu.hmj.home.domain.home.Home;
 import com.comumu.hmj.job.domain.Job;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.Set;
 
 @Entity
+@Getter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class User {
 
@@ -33,18 +39,12 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Job> jobs;
 
-    private String username;
-
+    private String userName;
     private String password;
-
     private String profileUrl;
-
     private Integer phoneNumber;
-
     private Integer age;
-
     private Gender gender;
-
     private String nationality;
 
 }
