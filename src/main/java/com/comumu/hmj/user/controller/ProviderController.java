@@ -1,6 +1,5 @@
 package com.comumu.hmj.user.controller;
 
-import com.comumu.hmj.user.dto.UserSignUpDto;
 import com.comumu.hmj.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

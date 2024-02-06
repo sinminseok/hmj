@@ -26,9 +26,9 @@ public class User {
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+            name = "user_authority",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "authority_name", referencedColumnName = "authority_name"))
     private Set<Authority> authorities;
 
     @JsonIgnore
@@ -40,11 +40,17 @@ public class User {
     private List<Job> jobs;
 
     private String userName;
+
     private String password;
+
     private String profileUrl;
+
     private Integer phoneNumber;
+
     private Integer age;
+
     private Gender gender;
+
     private String nationality;
 
 }
