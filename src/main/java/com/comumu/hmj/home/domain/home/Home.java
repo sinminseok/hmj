@@ -1,12 +1,13 @@
 package com.comumu.hmj.home.domain.home;
 
+import com.comumu.hmj.common.dao.Address;
+import com.comumu.hmj.home.domain.BasicInfo;
+import com.comumu.hmj.home.domain.Price;
 import com.comumu.hmj.post.domain.PostEntity;
-import com.comumu.hmj.post.domain.PostFunctionality;
 import com.comumu.hmj.user.domain.Gender;
 import com.comumu.hmj.user.domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -31,17 +32,14 @@ public class Home extends PostEntity {
     @OneToMany(mappedBy = "home" , cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<HomeImage> images;
 
-    private String address;
+    @Embedded
+    private Address address;
 
-    private Integer roomCount;
+    @Embedded
+    private Price price;
 
-    private Integer bathRoomCount;
-
-    private Integer tenantMaxCount;
-
-    private Integer tenantMinCount;
-
-    private Integer bond;
+    @Embedded
+    private BasicInfo info;
 
     private LocalDate dateMoveIn;
 
@@ -57,11 +55,7 @@ public class Home extends PostEntity {
 
     private List<HomeHashTag> hashTag;
 
-    private Integer bill;
-
     //필드 네이밍 고려
-    private boolean canAnimal;
-
-    private HomeStatus homeStatus;
+    private boolean canPet;
 
 }

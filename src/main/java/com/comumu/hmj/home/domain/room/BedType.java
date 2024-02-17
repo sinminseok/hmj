@@ -1,5 +1,5 @@
 package com.comumu.hmj.home.domain.room;
 
 public enum BedType {
-    SINGLE,KING
+    SINGLE, TWO_SINGLE, DOUBLE, QUEEN, KING
 }

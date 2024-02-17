@@ -1,6 +1,9 @@
 package com.comumu.hmj.home.domain.room;
 
+import com.comumu.hmj.home.domain.BasicInfo;
+import com.comumu.hmj.home.domain.LeaseStatus;
 import com.comumu.hmj.home.domain.home.Home;
+import com.comumu.hmj.home.domain.Price;
 import com.comumu.hmj.user.domain.Gender;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -28,7 +31,14 @@ public class Room {
 
     private Integer peopleMaxCount;
 
-    private Integer bill;
+    @Embedded
+    private Price price;
+
+    @Embedded
+    private BasicInfo info;
+
+    @Embedded
+    private LeaseStatus status;
 
     private Gender gender;
 
