@@ -17,14 +17,33 @@ spring:
         show_sql: true
         format_sql: true
     hibernate:
-      ddl-auto: 'create-drop'
+      ddl-auto: update
     database-platform: org.hibernate.dialect.MySQLDialect
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 97616906818-6co3h9anum6cp6vb9or4s2hojoh5ji26.apps.googleusercontent.com
+            client-secret: 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
+            scope: profile, email
 
 logging:
   level:
     me.selvernine: DEBUG
 
 jwt:
-  header: Authorization
-  secret: Z2ZkZmdkZmxrZ2pkbGZrZ2pzYXNkamtoYXNrZGphaHNka2fahgvfahvduyasdffjkhsgdfjkhasgfjkphaGRhc2Rhc2Rhc2Rhc2Rhc2ZhZmdzZAo=
-  access-token-validity-in-seconds: 86400
+#  #secretKey : b4a77e127b2bf1bd2ae6329d35d24c4e0b6d47ba89f9a1cad5c52d7883a65f709a76303f597b69ba053fdccfaab2ca385c1eac6009965b88b4e4e1ad09ae7e20
+#  header: Authorization
+#  secret: Z2ZkZmdkZmxrZ2pkbGZrZ2pzYXNkamtoYXNrZGphaHNka2fahgvfahvduyasdffjkhsgdfjkhasgfjkphaGRhc2Rhc2Rhc2Rhc2Rhc2ZhZmdzZAo=
+#  access-token-validity-in-seconds: 86400
+  secretKey: Z2ZkZmdkZmxrZ2pkbGZrZ2pzYXNkamtoYXNrZGphaHNka2fahgvfahvduyasdffjkhsgdfjkhasgfjkphaGRhc2Rhc2Rhc2Rhc2Rhc2ZhZmdzZAo
+
+  access:
+    expiration: 3600000 # 1시간(60분) (1000L(ms -> s) * 60L(s -> m) * 60L(m -> h))
+    header: Authorization
+
+  refresh:
+    expiration: 1209600000 #  (1000L(ms -> s) * 60L(s -> m) * 60L(m -> h) * 24L(h -> 하루) * 14(2주))
+    header: Authorization-refresh
