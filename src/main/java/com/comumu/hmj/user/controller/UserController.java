@@ -1,6 +1,5 @@
 package com.comumu.hmj.user.controller;
 
-import com.comumu.hmj.user.dto.LoginDto;
 import com.comumu.hmj.user.dto.SignupDto;
 import com.comumu.hmj.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -16,13 +15,6 @@ public class UserController {
     @PostMapping("/sign-up")
     public String signUp(@RequestBody SignupDto signupDto) throws Exception {
         userService.signUp(signupDto);
-        return "success";
-    }
-
-    // 로그인 api
-    @PostMapping("/login")
-    public String login(@RequestBody LoginDto loginDto) throws Exception {
-
         return "success";
     }
 

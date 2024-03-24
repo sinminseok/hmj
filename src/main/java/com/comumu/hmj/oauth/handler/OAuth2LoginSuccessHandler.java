@@ -1,6 +1,6 @@
 package com.comumu.hmj.oauth.handler;
 
-import com.comumu.hmj.jwt.service.JwtService;
+import com.comumu.hmj.user.service.JwtService;
 import com.comumu.hmj.oauth.CustomOAuth2User;
 import com.comumu.hmj.user.domain.Role;
 import com.comumu.hmj.user.repository.UserRepository;

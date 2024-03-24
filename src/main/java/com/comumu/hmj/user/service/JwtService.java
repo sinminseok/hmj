@@ -1,4 +1,4 @@
-package com.comumu.hmj.jwt.service;
+package com.comumu.hmj.user.service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -134,12 +134,6 @@ public class JwtService {
     }
 
 
-    /**
-     * 유저 회원가입 시 유저 Entity 가 저장될때는 RefreshToken 이 발급되기 전이기 때문에
-     * DB 에 Refresh Token 이 Column 에 null 로 저장된다.
-     * 따라서 로그인 시 RefreshToken 을 발급하면서, 발급한 Refresh Token 을 DB 에 저장하는 메서드다.
-     * 이후에 OAuth Login 성공 시 처리하는 LoginSuccessHandler 에서 사용될거다.
-     */
     public void updateRefreshToken(String email, String refreshToken) {
         userRepository.findByEmail(email)
                 .ifPresentOrElse(

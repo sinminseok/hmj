@@ -1,6 +1,6 @@
-package com.comumu.hmj.jwt.filter;
+package com.comumu.hmj.user.filter;
 
-import com.comumu.hmj.jwt.service.JwtService;
+import com.comumu.hmj.user.service.JwtService;
 import com.comumu.hmj.user.domain.User;
 import com.comumu.hmj.user.repository.UserRepository;
 import jakarta.servlet.FilterChain;
@@ -37,7 +37,6 @@ public class JwtAuthenticationProcessingFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-
 
         String refreshToken = jwtService.extractRefreshToken(request)
                 .filter(jwtService::isTokenValid)

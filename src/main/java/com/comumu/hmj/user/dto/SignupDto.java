@@ -4,7 +4,6 @@ import com.comumu.hmj.user.domain.Gender;
 import com.comumu.hmj.user.domain.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
