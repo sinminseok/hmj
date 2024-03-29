@@ -1,20 +1,18 @@
 package com.comumu.hmj.config;
 
 
-import com.comumu.hmj.user.filter.JwtAuthenticationProcessingFilter;
-import com.comumu.hmj.user.service.JwtService;
-import com.comumu.hmj.oauth.handler.OAuth2LoginFailureHandler;
-import com.comumu.hmj.oauth.handler.OAuth2LoginSuccessHandler;
-import com.comumu.hmj.oauth.service.CustomOAuth2UserService;
-import com.comumu.hmj.user.filter.CustomJsonUsernamePasswordAuthenticationFilter;
-import com.comumu.hmj.user.handler.LoginFailureHandler;
-import com.comumu.hmj.user.handler.LoginSuccessHandler;
+import com.comumu.hmj.account.filter.JwtAuthenticationFilter;
+import com.comumu.hmj.account.service.JwtService;
+import com.comumu.hmj.account.filter.CustomLoginAuthenticationFilter;
+import com.comumu.hmj.account.handler.LoginFailureHandler;
+import com.comumu.hmj.account.handler.LoginSuccessHandler;
 import com.comumu.hmj.user.repository.UserRepository;
-import com.comumu.hmj.user.service.LoginService;
+import com.comumu.hmj.account.service.LoginService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Role;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -39,9 +37,6 @@ public class SecurityConfig {
     private final JwtService jwtService;
     private final UserRepository userRepository;
     private final ObjectMapper objectMapper;
-    private final OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
-    private final OAuth2LoginFailureHandler oAuth2LoginFailureHandler;
-    private final CustomOAuth2UserService customOAuth2UserService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -61,42 +56,22 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/sign-up").permitAll()
                         .anyRequest().authenticated()
-                )
+                );
 
-                // OAuth2.0 관련 설정
-                .oauth2Login((oauth2Login) ->
-                        oauth2Login
-                                .successHandler(oAuth2LoginSuccessHandler)
-                                .failureHandler(oAuth2LoginFailureHandler)
-                                .userInfoEndpoint((userInfo) -> userInfo.userService(customOAuth2UserService))); // OAuth2 로그인 로직을 담당하는 클래스 설정
-
-        // 일반 로그인시 customJsonUsernamePasswordAuthenticationFilter 동작
-
-        /**
-         * addFilterAfter(A, B) B 필터 이후에 A 필터 동작
-         * 원래 스프링 시큐리티 필터 동작 순서가 LogoutFilter 이후에 로그인 동작 필터가 동작한다.
-         *
-         * addFilterBefore(A, B) B 필터 이잔에 A 필터 동작
-         * Json 로그인 필터가 동작하기전 JWT 인증 필터 동작
-         *
-         * LogoutFilter -> jwtAuthenticationProcessingFilter -> customJsonUsernamePasswordAuthenticationFilter
-         */
         http.addFilterAfter(customJsonUsernamePasswordAuthenticationFilter(), LogoutFilter.class);
-        http.addFilterBefore(jwtAuthenticationProcessingFilter(), CustomJsonUsernamePasswordAuthenticationFilter.class);
-
+        http.addFilterBefore(jwtAuthenticationProcessingFilter(), CustomLoginAuthenticationFilter.class);
         return http.build();
     }
 
     // CustomLogin (1)
     @Bean
-    public CustomJsonUsernamePasswordAuthenticationFilter customJsonUsernamePasswordAuthenticationFilter() {
+    public CustomLoginAuthenticationFilter customJsonUsernamePasswordAuthenticationFilter() {
         //CustomJsonUsernamePasswordAuthenticationFilter 에서 인증할 객체(Authentication) 생성
-        CustomJsonUsernamePasswordAuthenticationFilter customJsonUsernamePasswordLoginFilter
-                = new CustomJsonUsernamePasswordAuthenticationFilter(objectMapper);
+        CustomLoginAuthenticationFilter customJsonUsernamePasswordLoginFilter
+                = new CustomLoginAuthenticationFilter(objectMapper);
 
         //일반 로그인 인증 로직
         customJsonUsernamePasswordLoginFilter.setAuthenticationManager(authenticationManager());
-
         customJsonUsernamePasswordLoginFilter.setAuthenticationSuccessHandler(loginSuccessHandler());
         customJsonUsernamePasswordLoginFilter.setAuthenticationFailureHandler(loginFailureHandler());
         return customJsonUsernamePasswordLoginFilter;
@@ -115,8 +90,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public JwtAuthenticationProcessingFilter jwtAuthenticationProcessingFilter() {
-        JwtAuthenticationProcessingFilter jwtAuthenticationFilter = new JwtAuthenticationProcessingFilter(jwtService, userRepository);
+    public JwtAuthenticationFilter jwtAuthenticationProcessingFilter() {
+        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(jwtService, userRepository);
         return jwtAuthenticationFilter;
     }
 

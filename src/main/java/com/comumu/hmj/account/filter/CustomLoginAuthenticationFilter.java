@@ -1,4 +1,4 @@
-package com.comumu.hmj.user.filter;
+package com.comumu.hmj.account.filter;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,7 +21,7 @@ import java.util.Map;
  * AbstractAuthenticationProcessingFilter 는 SpringSecurity 에서 사용되는 필터다. 사용자 인증을 처리하는데 사용되는 필터다.
  * 사용자가 제출한 인증 요청(로그인 폼의 사용자 이름, 암호)를 수신해 이를 처리해 사용자를 인증하는 역할을 한다.
  */
-public class CustomJsonUsernamePasswordAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
+public class CustomLoginAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
     private static final String DEFAULT_LOGIN_REQUEST_URL = "/login";
     private static final String HTTP_METHOD = "POST";
@@ -36,7 +36,7 @@ public class CustomJsonUsernamePasswordAuthenticationFilter extends AbstractAuth
      * 부모 클래스인  AbstractAuthenticationProcessingFilter 의 생성자 파라미터로 위에서 선언한 /login URL 을 설정해
      * /login 로 요청이 들어왔을때  해당 필터가 동작함
      */
-    public CustomJsonUsernamePasswordAuthenticationFilter(ObjectMapper objectMapper) {
+    public CustomLoginAuthenticationFilter(ObjectMapper objectMapper) {
         super(DEFAULT_LOGIN_PATH_REQUEST_MATCHER);
         this.objectMapper = objectMapper;
     }

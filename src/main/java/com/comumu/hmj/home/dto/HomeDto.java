@@ -1,12 +1,14 @@
 package com.comumu.hmj.home.dto;
 
-public class CreateHomeDto {
-    private Long userId;
+import lombok.Getter;
+
+@Getter
+public class HomeDto {
+
+    private Long id;
 
     private String address;
 
     private Integer roomCount;
-
-    private Integer bathRoomCount;
 
 }

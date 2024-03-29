@@ -1,6 +1,8 @@
 package com.comumu.hmj.post.domain;
 
-public abstract class PostEntity {
+import com.comumu.hmj.common.domain.BaseTimeEntity;
+
+public abstract class PostEntity extends BaseTimeEntity {
 
     private String postName;
 
