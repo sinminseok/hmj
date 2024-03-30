@@ -17,7 +17,6 @@ import java.util.List;
 public class HomeService {
 
     private final HomeRepository homeRepository;
-    private final UserRepository userRepository;
 
     public void save(User user, HomeCreateDto homeCreateDto) {
         Home home = Home.builder()
@@ -28,10 +27,10 @@ public class HomeService {
         homeRepository.save(home);
     }
 
-    // 위치를 기반으로 조회하게끔 변경
-//    public List<HomeDto> findAll() {
-//        List<Home> all = homeRepository.findAll();
+//    public List<HomeDto> findByFilter(){
+//
 //    }
+
 
 
 }

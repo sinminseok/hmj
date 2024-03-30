@@ -2,6 +2,7 @@ package com.comumu.hmj.job.controller;
 
 import com.comumu.hmj.account.filter.JwtAuthenticationFilter;
 import com.comumu.hmj.home.dto.HomeCreateDto;
+import com.comumu.hmj.home.service.HomeService;
 import com.comumu.hmj.job.dto.JobCreateDto;
 import com.comumu.hmj.job.service.JobService;
 import com.comumu.hmj.user.domain.User;
@@ -24,8 +25,8 @@ public class JobController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_PROVIDER')")
-    public void createHome(HttpServletRequest request, JobCreateDto jobCreateDto){
+    public void createJob(HttpServletRequest request, JobCreateDto jobCreateDto){
         Optional<User> user = jwtAuthenticationFilter.findByAccessToken(request);
-        //jobService.save(user.get(), jobCreateDto);
+        jobService.save(user.get(), jobCreateDto);
     }
 }

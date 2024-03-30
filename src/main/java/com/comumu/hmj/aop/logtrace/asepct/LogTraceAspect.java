@@ -30,7 +30,6 @@ public class LogTraceAspect {
     @Around("controllerPointcut() || servicePointcut() || repositoryPointcut()")
     public Object execute(ProceedingJoinPoint joinPoint) throws Throwable {
         TraceStatus status = null;
-
         try {
             String message = joinPoint.getSignature().toShortString();
             status = logTrace.begin(message);

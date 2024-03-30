@@ -5,13 +5,15 @@ import com.comumu.hmj.post.domain.PostFunctionality;
 import com.comumu.hmj.user.domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Job extends PostEntity  {
 
     @Id
