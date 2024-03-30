@@ -3,27 +3,31 @@ package com.comumu.hmj.user.dto;
 import com.comumu.hmj.user.domain.Gender;
 import com.comumu.hmj.user.domain.Role;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class SignupDto {
-    private final String email;
+    private String email;
 
-    private final String password;
+    private String password;
 
-    private final String nickName;
+    private String nickName;
 
-    private final Integer phoneNumber;
+    private  Integer phoneNumber;
 
-    private final String profileUrl;
+    private  String profileUrl;
 
-    private final Integer age;
+    private  Integer age;
 
-    private final Gender gender;
+    private  Gender gender;
 
-    private final String nationality;
+    private  String nationality;
 
-    private final Role role;
+    private  Role role;
 
 }

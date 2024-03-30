@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface HomeRepository extends JpaRepository<Home,Long> {
 
-    @Query("SELECT h FROM Home h ORDER BY h.createdAt DESC")
-    List<Home> findAll();
+//    @Query("SELECT h FROM Home h ORDER BY h.createdAt DESC")
+//    List<Home> findAll();
 
 }

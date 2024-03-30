@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-public class Job extends PostEntity implements PostFunctionality {
+public class Job extends PostEntity  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,23 +37,4 @@ public class Job extends PostEntity implements PostFunctionality {
 
     private JobType type;
 
-    @Override
-    public void createPost() {
-
-    }
-
-    @Override
-    public void readPost() {
-
-    }
-
-    @Override
-    public void updatePost() {
-
-    }
-
-    @Override
-    public void deletePost() {
-
-    }
 }

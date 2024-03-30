@@ -2,16 +2,13 @@ package com.comumu.hmj.home.controller;
 
 import com.comumu.hmj.account.filter.JwtAuthenticationFilter;
 import com.comumu.hmj.home.dto.HomeCreateDto;
-import com.comumu.hmj.home.dto.HomeDto;
 import com.comumu.hmj.home.service.HomeService;
 import com.comumu.hmj.user.domain.User;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController

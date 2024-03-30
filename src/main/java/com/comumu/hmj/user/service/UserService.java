@@ -20,7 +20,6 @@ public class UserService {
     private static final String ALREADY_EXIST_NICKNAME_ERROR = "이미 존재하는 닉네임 입니다.";
 
     public void signUp(SignupDto signupDto) throws Exception {
-        System.out.println("dsadasfffff");
         if(userRepository.findByEmail(signupDto.getEmail()).isPresent()){
             throw new Exception(ALREADY_EXIST_EMAIL_ERROR);
         }

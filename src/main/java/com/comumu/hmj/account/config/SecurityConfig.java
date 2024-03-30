@@ -1,4 +1,4 @@
-package com.comumu.hmj.config;
+package com.comumu.hmj.account.config;
 
 
 import com.comumu.hmj.account.filter.JwtAuthenticationFilter;
