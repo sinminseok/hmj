@@ -22,7 +22,6 @@ public class HomeService {
         Home home = Home.builder()
                 .user(user)
                 .bathRoomCount(homeCreateDto.getBathRoomCount())
-                .address(homeCreateDto.getAddress())
                 .build();
         homeRepository.save(home);
     }

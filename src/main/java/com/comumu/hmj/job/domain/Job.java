@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,14 +30,24 @@ public class Job extends PostEntity  {
     @OneToMany(mappedBy = "job", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<JobImage> images;
 
+    //날짜별 근무 시간 ex) 일요일 1시 부터 10시
+    @JsonIgnore
+    @OneToMany(mappedBy = "job", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<DayAndTime> dayAndTime;
+
+    //가게이름
     private String storeName;
 
+    @Enumerated(EnumType.STRING)
     private JobCategory category;
 
+    //구인 포지션
     private String position;
 
-    private Integer payRate;
+    //시급
+    private Integer salary;
 
+    //일 타입
     private JobType type;
 
 }
