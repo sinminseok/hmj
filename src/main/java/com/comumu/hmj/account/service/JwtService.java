@@ -1,4 +1,4 @@
-package com.comumu.hmj.user.service;
+package com.comumu.hmj.account.service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -19,7 +19,6 @@ import java.util.Optional;
 @Getter
 @Slf4j
 public class JwtService {
-
     /*
     application.yml 의 프로퍼티 주입
      */

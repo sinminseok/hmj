@@ -1,4 +1,4 @@
-package com.comumu.hmj.user.handler;
+package com.comumu.hmj.account.handler;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

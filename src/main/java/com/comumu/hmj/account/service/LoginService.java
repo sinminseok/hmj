@@ -1,4 +1,4 @@
-package com.comumu.hmj.user.service;
+package com.comumu.hmj.account.service;
 
 import com.comumu.hmj.user.domain.User;
 import com.comumu.hmj.user.repository.UserRepository;

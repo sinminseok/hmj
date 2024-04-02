@@ -1,5 +1,5 @@
-package com.comumu.hmj.user.handler;
-import com.comumu.hmj.user.service.JwtService;
+package com.comumu.hmj.account.handler;
+import com.comumu.hmj.account.service.JwtService;
 import com.comumu.hmj.user.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -1,6 +1,6 @@
-package com.comumu.hmj.user.filter;
+package com.comumu.hmj.account.filter;
 
-import com.comumu.hmj.user.service.JwtService;
+import com.comumu.hmj.account.service.JwtService;
 import com.comumu.hmj.user.domain.User;
 import com.comumu.hmj.user.repository.UserRepository;
 import jakarta.servlet.FilterChain;
@@ -18,17 +18,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Optional;
 
 
 @RequiredArgsConstructor
 @Slf4j
-public class JwtAuthenticationProcessingFilter extends OncePerRequestFilter {
+public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private static final String NO_CHECK_URL = "/login";
 
     private final JwtService jwtService;
     private final UserRepository userRepository;
-
     private GrantedAuthoritiesMapper authoritiesMapper = new NullAuthoritiesMapper();
 
     @Override
@@ -51,6 +51,13 @@ public class JwtAuthenticationProcessingFilter extends OncePerRequestFilter {
         if (refreshToken == null) {
             checkAccessTokenAndAuthentication(request, response, filterChain);
         }
+    }
+
+    public Optional<User> findByAccessToken(HttpServletRequest request) {
+        return jwtService.extractAccessToken(request)
+                .filter(jwtService::isTokenValid)
+                .flatMap(jwtService::extractEmail)
+                .flatMap(userRepository::findByEmail);
     }
 
     public void checkRefreshTokenAndReIssueAccessToken(HttpServletResponse response, String refreshToken) {

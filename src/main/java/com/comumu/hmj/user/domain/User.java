@@ -1,5 +1,6 @@
 package com.comumu.hmj.user.domain;
 
+import com.comumu.hmj.common.domain.BaseTimeEntity;
 import com.comumu.hmj.home.domain.home.Home;
 import com.comumu.hmj.job.domain.Job;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,7 +19,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User  {
+public class User  extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
