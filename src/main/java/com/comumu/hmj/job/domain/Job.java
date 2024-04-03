@@ -1,13 +1,13 @@
 package com.comumu.hmj.job.domain;
 
-import com.comumu.hmj.post.domain.PostEntity;
-import com.comumu.hmj.post.domain.PostFunctionality;
+import com.comumu.hmj.common.domain.BaseTimeEntity;
+import com.comumu.hmj.job.domain.enums.JobCategory;
+import com.comumu.hmj.job.domain.enums.JobType;
 import com.comumu.hmj.user.domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,7 +15,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Job extends PostEntity  {
+public class Job extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,5 +49,9 @@ public class Job extends PostEntity  {
 
     //일 타입
     private JobType type;
+
+    public void update(Job newEntity){
+
+    }
 
 }

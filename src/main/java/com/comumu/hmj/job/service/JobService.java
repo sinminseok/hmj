@@ -1,7 +1,6 @@
 package com.comumu.hmj.job.service;
 
 import com.comumu.hmj.job.domain.Job;
-import com.comumu.hmj.job.domain.JobType;
 import com.comumu.hmj.job.dto.JobCreateDto;
 import com.comumu.hmj.job.repository.JobRepository;
 import com.comumu.hmj.user.domain.User;

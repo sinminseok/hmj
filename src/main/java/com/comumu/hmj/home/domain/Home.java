@@ -1,6 +1,6 @@
-package com.comumu.hmj.home.domain.home;
+package com.comumu.hmj.home.domain;
 
-import com.comumu.hmj.post.domain.PostEntity;
+import com.comumu.hmj.common.domain.BaseTimeEntity;
 import com.comumu.hmj.user.domain.Gender;
 import com.comumu.hmj.user.domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,7 +22,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Home extends PostEntity {
+public class Home extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,6 @@
 package com.comumu.hmj.job.domain;
 
+import com.comumu.hmj.job.domain.enums.Day;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,4 +28,8 @@ public class DayAndTime {
     private LocalTime startTime;
 
     private LocalTime endTime;
+
+    public void update(DayAndTime newEntity){
+
+    }
 }

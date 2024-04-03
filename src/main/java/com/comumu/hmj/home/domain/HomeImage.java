@@ -1,8 +1,8 @@
-package com.comumu.hmj.home.domain.home;
+package com.comumu.hmj.home.domain;
 
 
+import com.comumu.hmj.home.domain.Home;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

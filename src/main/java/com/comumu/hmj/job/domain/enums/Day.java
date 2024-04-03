@@ -1,4 +1,4 @@
-package com.comumu.hmj.job.domain;
+package com.comumu.hmj.job.domain.enums;
 
 public enum Day {
     MONDAY("월"),

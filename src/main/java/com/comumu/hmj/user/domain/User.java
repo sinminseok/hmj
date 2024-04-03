@@ -1,7 +1,7 @@
 package com.comumu.hmj.user.domain;
 
 import com.comumu.hmj.common.domain.BaseTimeEntity;
-import com.comumu.hmj.home.domain.home.Home;
+import com.comumu.hmj.home.domain.Home;
 import com.comumu.hmj.job.domain.Job;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
