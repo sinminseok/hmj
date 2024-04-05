@@ -3,11 +3,15 @@ package com.comumu.hmj.home.domain;
 
 import com.comumu.hmj.home.domain.Home;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class HomeImage {
 

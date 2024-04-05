@@ -21,7 +21,7 @@ public class HomeController {
 
     @PostMapping()
     @PreAuthorize("hasRole('ROLE_PROVIDER')")
-    public void createHome(HttpServletRequest request, HomeCreateDto homeCreateDto) {
+    public void createHome(HttpServletRequest request,@RequestBody HomeCreateDto homeCreateDto) {
         Optional<User> user = jwtAuthenticationFilter.findByAccessToken(request);
         homeService.save(user.get(), homeCreateDto);
     }

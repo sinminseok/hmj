@@ -19,15 +19,27 @@ public class HomeAddress {
     @Column(name = "home_address_id")
     private Long id;
 
-    // 양방향 매핑
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "home_id")
-    private Home home;
+    // 주
+    private String state;
 
-    /**
-     * 호주 주소 형식에 맞게 수정
-     */
+    // 시티
     private String city;
 
+    // 우편 변호
+    private Integer postCode;
 
+    //상세 주소 ex) 401호
+    private String detailAddress;
+
+    //거리 이름
+    private String streetName;
+
+    //거리 번호
+    private String streetNumber;
+
+    //위도
+    private double latitude;
+
+    //경도
+    private double longitude;
 }

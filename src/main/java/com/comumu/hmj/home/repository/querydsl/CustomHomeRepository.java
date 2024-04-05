@@ -1,7 +1,6 @@
-package com.comumu.hmj.home.repository;
+package com.comumu.hmj.home.repository.querydsl;
 
 import com.comumu.hmj.home.domain.Home;
-import com.comumu.hmj.home.dto.HomeFilterDto;
 
 import java.util.List;
 
@@ -11,5 +10,7 @@ public interface CustomHomeRepository {
 
     //주소를 기반으로 찾기
     List<Home> findByAddress();
+
+    Home test(Integer peopleCount);
 
 }

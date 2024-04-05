@@ -1,6 +1,8 @@
 package com.comumu.hmj.home.domain;
 
 import com.comumu.hmj.common.domain.BaseTimeEntity;
+import com.comumu.hmj.home.dto.HomeAddressDto;
+import com.comumu.hmj.home.dto.HomeDto;
 import com.comumu.hmj.user.domain.Gender;
 import com.comumu.hmj.user.domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -38,7 +40,8 @@ public class Home extends BaseTimeEntity {
     @OneToMany(mappedBy = "home" , cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<HomeImage> images;
 
-    @OneToOne()
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "home_address_id")
     private HomeAddress homeAddress;
 
     // 화장실 개수
@@ -51,9 +54,10 @@ public class Home extends BaseTimeEntity {
     private Integer bond;
 
     //todo 입주 날짜, 퇴실 날짜가 있어야 하나 ?
-    private LocalDate dateMoveIn;
-    private LocalDate dateMoveOut;
+//    private LocalDate dateMoveIn;
+//    private LocalDate dateMoveOut;
 
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     @Enumerated(EnumType.STRING)
@@ -70,5 +74,24 @@ public class Home extends BaseTimeEntity {
 
     //조회수
     private Integer viewCount;
+
+    /**
+     * Dto 변환 메서드
+     */
+
+
+
+    /**
+     * 연관관계 등록 메서드
+     */
+
+    public void registerHomeAddress(HomeAddress address) {
+        this.homeAddress = address;
+    }
+
+    public void registerHomeImages(List<HomeImage> images){
+        this.images = images;
+    }
+
 
 }
