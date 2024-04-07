@@ -2,9 +2,11 @@ package com.comumu.hmj.home.dto;
 
 import com.comumu.hmj.home.domain.Home;
 import com.comumu.hmj.home.domain.HomeAddress;
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
+@Builder
 public class HomeAddressDto {
 
     private String state;

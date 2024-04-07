@@ -3,6 +3,7 @@ package com.comumu.hmj.home.domain;
 import com.comumu.hmj.common.domain.BaseTimeEntity;
 import com.comumu.hmj.home.dto.HomeAddressDto;
 import com.comumu.hmj.home.dto.HomeDto;
+import com.comumu.hmj.home.dto.SimpleHomeDto;
 import com.comumu.hmj.user.domain.Gender;
 import com.comumu.hmj.user.domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -78,7 +80,35 @@ public class Home extends BaseTimeEntity {
     /**
      * Dto 변환 메서드
      */
+    public SimpleHomeDto toSimpleDto(){
+        return SimpleHomeDto.builder()
+                .homeType(type)
+                .address(homeAddress.toAddress())
+                .bill(bill)
+                .bond(bond)
+                .imageUrl(images.get(0).getImageUrl())
+                .build();
+    }
 
+    public HomeDto toDto(){
+        return HomeDto.builder()
+                .address(homeAddress.toDto())
+                .images(toImageUrls())
+                .bathRoomCount(bathRoomCount)
+                .peopleCount(peopleCount)
+                .bond(bond)
+                .homeType(type)
+                .shortIntroduce(shortIntroduce)
+                .introduce(introduce)
+                .bill(bill)
+                .build();
+    }
+
+    private List<String> toImageUrls(){
+        return images.stream()
+                .map(HomeImage::getImageUrl)
+                .collect(Collectors.toList());
+    }
 
 
     /**
@@ -92,6 +122,5 @@ public class Home extends BaseTimeEntity {
     public void registerHomeImages(List<HomeImage> images){
         this.images = images;
     }
-
 
 }

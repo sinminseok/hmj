@@ -1,6 +1,7 @@
 package com.comumu.hmj.home.domain;
 
 import com.comumu.hmj.home.domain.Home;
+import com.comumu.hmj.home.dto.HomeAddressDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,4 +43,21 @@ public class HomeAddress {
 
     //경도
     private double longitude;
+
+    public String toAddress() {
+        return city + ", " + state + "," + "streetName" + "streetNumber";
+    }
+
+    public HomeAddressDto toDto() {
+        return HomeAddressDto.builder()
+                .state(state)
+                .city(city)
+                .postCode(postCode)
+                .detailAddress(detailAddress)
+                .streetName(streetName)
+                .streetNumber(streetNumber)
+                .build();
+    }
+
+
 }

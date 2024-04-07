@@ -26,18 +26,4 @@ public class HomeRepositoryTest {
 
     }
 
-    @Test
-    void 저장_기능_테스트(){
-        Home home = Home.builder()
-                .peopleCount(10)
-                .bathRoomCount(10)
-                .bill(20000)
-                .type(HomeType.RENT)
-                .shortIntroduce("테스트용 객체 입니다.")
-                .bill(300)
-                .viewCount(0)
-                .build();
-
-    }
-
 }

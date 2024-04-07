@@ -1,11 +1,13 @@
 package com.comumu.hmj.home.dto;
 
 import com.comumu.hmj.home.domain.HomeType;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.util.List;
 
 @Getter
+@Builder
 public class HomeDto {
 
     private Long id;

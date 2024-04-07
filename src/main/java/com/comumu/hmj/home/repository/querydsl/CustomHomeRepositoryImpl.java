@@ -2,12 +2,10 @@ package com.comumu.hmj.home.repository.querydsl;
 
 import com.comumu.hmj.home.domain.Home;
 import com.comumu.hmj.home.domain.QHome;
-import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -24,6 +22,13 @@ public class CustomHomeRepositoryImpl implements CustomHomeRepository {
     @Override
     public List<Home> findByAddress() {
         return null;
+    }
+
+    @Override
+    public List<Home> findByCity(String cityName) {
+        return query.selectFrom(qHome)
+                .where(qHome.homeAddress.city.like("%" + cityName +"%"))
+                .fetch();
     }
 
     @Override
