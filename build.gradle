@@ -1,3 +1,9 @@
+buildscript {
+	ext {
+		queryDslVersion = "5.0.0"
+	}
+}
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.2'
@@ -41,10 +47,34 @@ dependencies {
 	testImplementation 'org.mockito:mockito-core:3.12.4'
 	testImplementation 'org.mockito:mockito-junit-jupiter:3.12.4'
 
-	testImplementation 'org.mockito:mockito-core:3.11.2' // Mockito 종속성
+	testImplementation 'org.mockito:mockito-core:3.11.2'
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
 	implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
 	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+
+	// QueryDSL
+	implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
+	annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
+	annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+	annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+}
+
+// [3] Querydsl 설정부
+def generated = 'src/main/generated'
+
+// [4] querydsl QClass 파일 생성 위치를 지정
+tasks.withType(JavaCompile) {
+	options.getGeneratedSourceOutputDirectory().set(file(generated))
+}
+
+// [5] java source set 에 querydsl QClass 위치 추가
+sourceSets {
+	main.java.srcDirs += [ generated ]
+}
+
+// [6] gradle clean 시에 QClass 디렉토리 삭제
+clean {
+	delete file(generated)
 }
 
 tasks.named('test') {

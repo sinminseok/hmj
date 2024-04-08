@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +26,7 @@ public class JobController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_PROVIDER')")
-    public void createJob(HttpServletRequest request, JobCreateDto jobCreateDto){
+    public void createJob(HttpServletRequest request,@RequestBody JobCreateDto jobCreateDto){
         Optional<User> user = jwtAuthenticationFilter.findByAccessToken(request);
         jobService.save(user.get(), jobCreateDto);
     }

@@ -9,11 +9,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableJpaAuditing
 @EnableAspectJAutoProxy
 @SpringBootApplication
 public class HmjApplication {
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(HmjApplication.class, args);

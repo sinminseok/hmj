@@ -1,6 +1,6 @@
-package com.comumu.hmj.home.domain.home;
+package com.comumu.hmj.home.domain;
 
 // 홈 타입 뭐가 있는지 추가
 public enum HomeType {
-    APART,ONE_ROOM
+    RENT,SHARE
 }
