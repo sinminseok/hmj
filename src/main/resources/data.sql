@@ -3,3 +3,4 @@ VALUES ('1','GETTER', 'nickname', 'test@email.com', 'profileUrl', '$2a$10$jtkeHm
 
 insert into home(bath_room_count, bill, bond, people_count, view_count, home_id, user_id,introduce, type)
 values ('3', '3000', '50000', '5', '0', '1', '1', 'introudasdas', 'RENT')
+

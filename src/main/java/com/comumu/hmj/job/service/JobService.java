@@ -13,10 +13,8 @@ public class JobService {
     private final JobRepository jobRepository;
 
     public void save(User user, JobCreateDto jobCreateDto) {
-        Job job = Job.builder()
-                .user(user)
-                .build();
-
+        Job job = jobCreateDto.toEntity(user);
         jobRepository.save(job);
     }
+
 }

@@ -52,9 +52,4 @@ public class HomeService {
                 .map(Home::toSimpleDto)
                 .collect(Collectors.toList());
     }
-
-
-
-
-
 }

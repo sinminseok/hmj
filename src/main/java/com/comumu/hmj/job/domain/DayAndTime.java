@@ -2,6 +2,8 @@ package com.comumu.hmj.job.domain;
 
 import com.comumu.hmj.job.domain.enums.Day;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +12,8 @@ import java.time.LocalTime;
 // ex) 일요일 1시 ~10시
 @Entity
 @Getter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class DayAndTime {
 

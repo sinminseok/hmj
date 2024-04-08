@@ -54,4 +54,12 @@ public class Job extends BaseTimeEntity {
 
     }
 
+    public void registerImages(List<JobImage> images) {
+        this.images  = images;
+    }
+
+    public void registerDayAndTimes(List<DayAndTime> dayAndTimes) {
+        this.dayAndTime = dayAndTimes;
+    }
+
 }

@@ -29,14 +29,14 @@ public class HomeController {
         homeService.save(user.get(), homeCreateDto);
     }
 
-    @GetMapping("/all/city")
+    @GetMapping("/read/all/city")
     //@PreAuthorize("hasAnyRole('ROLE_PROVIDER','ROLE_GETTER")
     public List<SimpleHomeDto> findHomeByCity(HttpServletRequest request, @RequestBody CityDto cityDto) {
         return homeService.findByCity(cityDto);
     }
 //
     //GET /home/all?pageNo=0&pageSize=10
-    @GetMapping("/all")
+    @GetMapping("/read/all")
     public List<SimpleHomeDto> findAllByPage(HttpServletRequest request, @RequestParam(defaultValue = "0") int pageNumber,
                                              @RequestParam(defaultValue = "10") int pageSize){
         return homeService.findAllByPage(pageNumber, pageSize);
