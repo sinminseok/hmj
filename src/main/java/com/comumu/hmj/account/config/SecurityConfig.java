@@ -55,6 +55,8 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/sign-up").permitAll()
+                        .requestMatchers("/chat/**", "/stomp/**", "/ws/chat/**", "/ws/stomp/**").permitAll()
+                        .requestMatchers("/**").permitAll()
                         .anyRequest().authenticated()
                 );
 
