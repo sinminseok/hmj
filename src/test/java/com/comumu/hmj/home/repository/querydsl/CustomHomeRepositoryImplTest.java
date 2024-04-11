@@ -41,7 +41,7 @@ class CustomHomeRepositoryImplTest {
     }
 
     @Test
-    void findByCity_테스트(){
+    void city_이름으로_home_조회기능_테스트(){
         //given
         String cityName = "ci";
 

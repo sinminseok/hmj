@@ -30,7 +30,6 @@ public class HomeController {
     }
 
     @GetMapping("/read/all/city")
-    //@PreAuthorize("hasAnyRole('ROLE_PROVIDER','ROLE_GETTER")
     public List<SimpleHomeDto> findHomeByCity(HttpServletRequest request, @RequestBody CityDto cityDto) {
         return homeService.findByCity(cityDto);
     }

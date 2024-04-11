@@ -14,6 +14,4 @@ public interface CustomHomeRepository {
     //시티이름 기반으로 찾기
     List<Home> findByCity(String cityName);
 
-    Home test(Integer peopleCount);
-
 }
