@@ -110,7 +110,6 @@ public class Home extends BaseTimeEntity {
                 .collect(Collectors.toList());
     }
 
-
     /**
      * 연관관계 등록 메서드
      */

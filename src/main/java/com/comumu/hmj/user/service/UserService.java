@@ -20,6 +20,15 @@ public class UserService {
     private static final String ALREADY_EXIST_NICKNAME_ERROR = "이미 존재하는 닉네임 입니다.";
 
     public void signUp(SignupDto signupDto) throws Exception {
+        validateSignUpDto(signupDto);
+
+        User user = signupDto.toEntity();
+
+        user.passwordEncode(passwordEncoder);
+        userRepository.save(user);
+    }
+
+    private void validateSignUpDto(SignupDto signupDto) throws Exception{
         if(userRepository.findByEmail(signupDto.getEmail()).isPresent()){
             throw new Exception(ALREADY_EXIST_EMAIL_ERROR);
         }
@@ -27,18 +36,6 @@ public class UserService {
         if(userRepository.findByNickName(signupDto.getNickName()).isPresent()){
             throw new Exception(ALREADY_EXIST_NICKNAME_ERROR);
         }
-
-        User user = User.builder()
-                .email(signupDto.getEmail())
-                .password(signupDto.getPassword())
-                .nickName(signupDto.getNickName())
-                .nationality(signupDto.getNationality())
-                .phoneNumber(signupDto.getPhoneNumber())
-                .role(signupDto.getRole())
-                .build();
-
-        user.passwordEncode(passwordEncoder);
-        userRepository.save(user);
     }
 
 }

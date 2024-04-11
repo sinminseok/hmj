@@ -24,6 +24,7 @@ public class CustomHomeRepositoryImpl implements CustomHomeRepository {
         return null;
     }
 
+    // city 이름으로 조회
     @Override
     public List<Home> findByCity(String cityName) {
         return query.selectFrom(qHome)
@@ -31,13 +32,4 @@ public class CustomHomeRepositoryImpl implements CustomHomeRepository {
                 .fetch();
     }
 
-    @Override
-    public Home test(Integer peopleCount) {
-        Home first = query.selectFrom(qHome)
-                .where(qHome.peopleCount.eq(peopleCount))
-                .orderBy(qHome.peopleCount.desc())
-                .stream().findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("에러 발생"));
-        return first;
-    }
 }

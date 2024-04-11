@@ -28,11 +28,11 @@ public class User  extends BaseTimeEntity {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<Home> homes = new ArrayList<>();
+    private List<Home> homes;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<Job> jobs = new ArrayList<>();
+    private List<Job> jobs;
 
     @Enumerated(EnumType.STRING)
     private Role role;
