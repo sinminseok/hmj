@@ -1,6 +1,8 @@
 package com.comumu.hmj.chat.controller;
 
 import com.comumu.hmj.chat.dto.ChatMessageDTO;
+import com.comumu.hmj.chat.dto.DirectMessageDto;
+import com.comumu.hmj.chat.service.DirectMessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 public class StompChatController {
 
     private final SimpMessagingTemplate template; //특정 broker로 매제지 전달
+    private final DirectMessageService dmService;
 
 
     //Client가 SEND할 수 있는 경로
@@ -25,5 +28,11 @@ public class StompChatController {
     @MessageMapping(value = "/chat/message")
     public void message(ChatMessageDTO message){
         template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
+    }
+
+    @MessageMapping(value = "/dm/message")
+    public void message(DirectMessageDto dmDto){
+        template.convertAndSend("/sub/chat/room/" + dmDto.getReceiverId(), dmDto.getMessage());
+        dmService.sendDM(dmDto);
     }
 }

@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Role;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -31,7 +32,7 @@ import org.springframework.security.web.authentication.logout.LogoutFilter;
 @Configuration
 @EnableWebSecurity // @EnableWebSecurity 어노테이션을 붙여야 Spring Security 기능을 사용할 수 있다.
 @RequiredArgsConstructor
-public class SecurityConfig {
+public class SecurityConfig extends SecurityConfigurerAdapter {
 
     private final LoginService loginService;
     private final JwtService jwtService;
@@ -41,7 +42,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .formLogin((formLogin) -> formLogin.disable()) // Spring Security 에서는 아무 설정을 하지 않으면 기본 FormLogin 형식의 로그인을 제공한다
+//                .formLogin((formLogin) -> formLogin.disable()) // Spring Security 에서는 아무 설정을 하지 않으면 기본 FormLogin 형식의 로그인을 제공한다
                 .httpBasic((httpBasic) -> httpBasic.disable()) // JWT 토큰을 사용한 로그인 방식이기 때문에 httpBasic disable 로 설정
                 .csrf((csrfConfig) -> csrfConfig.disable()) // 서버에 인증 정보를 저장하지 않고, 요청 시 인증 정보를 담아서 요청 하므로 보안 기능인 csrf 불필요
                 .httpBasic((httpBasic) -> httpBasic.disable())
@@ -51,12 +52,12 @@ public class SecurityConfig {
                         )
                 )
                 // 세션 사용 x
-                .sessionManagement((sessionManagement) -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//                .sessionManagement((sessionManagement) -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/sign-up").permitAll()
-                        .requestMatchers("/chat/**", "/stomp/**", "/ws/chat/**", "/ws/stomp/**").permitAll()
-//                        .requestMatchers("/**").permitAll()
+//                        .requestMatchers("/chat/**", "/stomp/**", "/ws/chat/**", "/ws/stomp/**").permitAll()
+                        .requestMatchers("/**").permitAll()
                         .anyRequest().authenticated()
                 );
 

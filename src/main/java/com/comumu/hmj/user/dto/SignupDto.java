@@ -17,7 +17,7 @@ public class SignupDto {
 
     private String password;
 
-    private String nickName;
+    private String nickname;
 
     private  Integer phoneNumber;
 

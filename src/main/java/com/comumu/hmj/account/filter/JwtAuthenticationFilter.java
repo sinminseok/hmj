@@ -1,6 +1,8 @@
 package com.comumu.hmj.account.filter;
 
 import com.comumu.hmj.account.service.JwtService;
+import com.comumu.hmj.account.user.CustomUserBuilder;
+import com.comumu.hmj.account.user.CustomUserDetails;
 import com.comumu.hmj.user.domain.User;
 import com.comumu.hmj.user.repository.UserRepository;
 import jakarta.servlet.FilterChain;
@@ -94,7 +96,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             password = "1233"; //PasswordUtil.generateRandomPassword();
         }
 
-        UserDetails userDetailsUser = org.springframework.security.core.userdetails.User.builder()
+        UserDetails userDetailsUser = new CustomUserBuilder()
+                .id(myUser.getId())
                 .username(myUser.getEmail())
                 .password(password)
                 .roles(myUser.getRole().name())
