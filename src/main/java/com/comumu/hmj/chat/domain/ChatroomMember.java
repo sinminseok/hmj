@@ -3,19 +3,21 @@ package com.comumu.hmj.chat.domain;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChatRoom {
+public class ChatroomMember {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "chatroom_member_id")
+    private Long chatroomMemberId;
+
     @Column(name = "chatroom_id")
-    private Long id;
+    private Long chatroomId;
 
-
+    @Column(name = "user_id")
+    private Long userId;
 }

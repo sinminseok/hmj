@@ -1,6 +1,7 @@
 package com.comumu.hmj.chat.controller;
 
-import com.comumu.hmj.chat.repository.ChatRoomRepository;
+import com.comumu.hmj.chat.repository.ChatroomRepository;
+import com.comumu.hmj.chat.repository.ChatRoomRepositorys;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Log4j2
 public class RoomController {
 
-    private final ChatRoomRepository repository;
+    private final ChatRoomRepositorys repository;
 
     //채팅방 목록 조회
     @GetMapping(value = "/rooms")
@@ -37,7 +38,7 @@ public class RoomController {
     public String create(@RequestParam String name, RedirectAttributes rttr){
 
         log.info("# Create Chat Room , name: " + name);
-        rttr.addFlashAttribute("roomName", repository.createChatRoomDTO(name));
+        rttr.addFlashAttribute("roomName", repository.createChatRoomDTO(name).getName());
         return "redirect:/chat/rooms";
     }
 

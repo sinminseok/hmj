@@ -10,14 +10,14 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class ChatRoomDTO {
+public class ChatRoomDto {
 
     private String roomId;
     private String name;
     private Set<WebSocketSession> sessions = new HashSet<>();
 
-    public static ChatRoomDTO create(String name) {
-        ChatRoomDTO room = new ChatRoomDTO();
+    public static ChatRoomDto create(String name) {
+        ChatRoomDto room = new ChatRoomDto();
 
         room.roomId = UUID.randomUUID().toString();
         room.name = name;

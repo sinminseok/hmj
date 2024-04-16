@@ -4,10 +4,12 @@ import com.comumu.hmj.user.domain.User;
 import com.comumu.hmj.user.dto.SignupDto;
 import com.comumu.hmj.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -20,6 +22,7 @@ public class UserService {
     private static final String ALREADY_EXIST_NICKNAME_ERROR = "이미 존재하는 닉네임 입니다.";
 
     public void signUp(SignupDto signupDto) throws Exception {
+        log.info("signup method2");
         if(userRepository.findByEmail(signupDto.getEmail()).isPresent()){
             throw new Exception(ALREADY_EXIST_EMAIL_ERROR);
         }
