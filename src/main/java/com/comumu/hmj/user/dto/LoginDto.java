@@ -1,14 +1,15 @@
 package com.comumu.hmj.user.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 public class LoginDto {
-    private final String id;
+    private final String username;
     private final String password;
 
-    public LoginDto(String id, String password) {
-        this.id = id;
+    public LoginDto(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 }

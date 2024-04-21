@@ -3,6 +3,7 @@ package com.comumu.hmj.chat.controller;
 import com.comumu.hmj.chat.repository.ChatroomRepository;
 import com.comumu.hmj.chat.repository.ChatRoomRepositorys;
 import com.comumu.hmj.user.repository.UserRepository;
+import com.comumu.hmj.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -65,6 +66,8 @@ public class RoomController {
     public String newDmRoom(@RequestParam Long userId, RedirectAttributes rttr){
 
         log.info("# Create Chat Room , name: " + userId);
+
+
         rttr.addFlashAttribute("roomName", userRepository.findById(userId));
         return "redirect:/chat/dm?userId=" + userId;
     }

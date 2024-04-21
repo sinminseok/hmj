@@ -1,6 +1,8 @@
 package com.comumu.hmj.user.controller;
 
+import com.comumu.hmj.user.domain.User;
 import com.comumu.hmj.user.dto.SignupDto;
+import com.comumu.hmj.user.dto.UserDto;
 import com.comumu.hmj.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,4 +22,8 @@ public class UserController {
         return "success";
     }
 
+    @GetMapping("/user")
+    public UserDto user() {
+        return userService.getCurrentUserInfo();
+    }
 }
