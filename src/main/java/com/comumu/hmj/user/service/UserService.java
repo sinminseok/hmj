@@ -41,7 +41,7 @@ public class UserService {
         if (authentication != null && authentication.isAuthenticated()) {
             // 인증된 사용자의 정보에서 ID 가져오기
             CustomUser userDetails = (CustomUser) authentication.getPrincipal();
-            return UserDto.builder().email(userDetails.getUsername()).build();
+            return UserDto.builder().id(userDetails.getId()).email(userDetails.getUsername()).build();
         }
         return null; // 인증되지 않은 경우 또는 사용자 정보가 없는 경우
     }
