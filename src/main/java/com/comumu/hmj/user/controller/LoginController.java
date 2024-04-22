@@ -52,6 +52,7 @@ public class LoginController {
         Cookie cookie = new Cookie("Authorization", token);
         cookie.setPath("/");
         cookie.setHttpOnly(true); // 서버만 쿠키에 접근
+        cookie.setSecure(false);
         response.addCookie(cookie);
 
         return "redirect:/";
