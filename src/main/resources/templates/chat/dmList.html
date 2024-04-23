@@ -10,7 +10,7 @@
         <div class="container">
             <div>
                 <ul th:each="user : ${list}">
-                    <li><a th:href="@{/chat/dm(userId=${user.id})}">[[${user.email}]]</a></li>
+                    <li><a th:href="@{/chat/dm(receiverId=${user.id})}">[[${user.nickname}]]</a></li>
                     <form th:action="@{/chat/dm}" method="post">
                         <input type="hidden" name="userId" value="[[${user.id}]]" class="form-control">
                         <button class="btn btn-secondary">채팅하기</button>

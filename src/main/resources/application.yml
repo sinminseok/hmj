@@ -5,11 +5,11 @@ spring:
       mode: always
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: [URL]
-    username: [USERNAME]
-    password: [PASSWORD]
+    url: jdbc:mysql://localhost:3306/hnj?serverTimezone=Asia/Seoul
+    username: root
+    password: dhsdk1977!D
 
-# JPA Configuration
+  # JPA Configuration
   jpa:
     defer-datasource-initialization: true
     properties:
@@ -17,7 +17,7 @@ spring:
         show_sql: true
         format_sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     database-platform: org.hibernate.dialect.MySQLDialect
 
   security:
@@ -25,8 +25,8 @@ spring:
       client:
         registration:
           google:
-            client-id: [CLIENT ID]
-            client-secret: [SECRET]
+            client-id: 97616906818-6co3h9anum6cp6vb9or4s2hojoh5ji26.apps.googleusercontent.com
+            client-secret: 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
             scope: profile, email
 
 logging:
@@ -34,7 +34,7 @@ logging:
     me.selvernine: DEBUG
 
 jwt:
-  secretKey: [SECRET KEY]
+  secretKey: Z2ZkZmdkZmxrZ2pkbGZrZ2pzYXNkamtoYXNrZGphaHNka2fahgvfahvduyasdffjkhsgdfjkhasgfjkphaGRhc2Rhc2Rhc2Rhc2Rhc2ZhZmdzZAo
 
   access:
     expiration: 3600000 # 1시간(60분) (1000L(ms -> s) * 60L(s -> m) * 60L(m -> h))

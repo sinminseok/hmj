@@ -13,6 +13,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 @Slf4j
 @Service
 @Transactional
@@ -67,6 +71,16 @@ public class UserService {
 
         user.passwordEncode(passwordEncoder);
         userRepository.save(user);
+    }
+
+
+    public List<UserDto> getAllUsers() {
+        List<User> users = userRepository.findAll();
+//        List<UserDto> = users -> UserDto.builder(users).build()
+        return users.stream().map(user -> UserDto.builder()
+                .email(user.getEmail()).
+                nickname(user.getNickName()).
+                id(user.getId()).build()).collect(Collectors.toList());
     }
 
 }

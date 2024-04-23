@@ -21,7 +21,7 @@ public class DirectMessageService {
         try {
             DirectMessage save = dmRepository.save(
                     DirectMessage.builder()
-                            .senderId(userService.getCurrentUserId())
+                            .senderId(dmDto.getSenderId())
                             .receiverId(dmDto.getReceiverId())
                             .sentAt(LocalDateTime.now())
                             .messageContents(dmDto.getMessage())
@@ -31,6 +31,5 @@ public class DirectMessageService {
         } catch (Exception e) {
             return e.getMessage();
         }
-
     }
 }

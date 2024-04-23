@@ -26,14 +26,14 @@ public class StompChatController {
     }
 
     @MessageMapping(value = "/chat/message")
-    public void message(ChatMessageDTO message){
-//        dmService.sendDM(DirectMessageDto);
-        template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
+    public void message(DirectMessageDto dmDto){
+        dmService.sendDM(dmDto);
+        template.convertAndSend("/sub/chat/room/" + dmDto.getRoomId(), dmDto);
     }
 
     @MessageMapping(value = "/dm/message")
-    public void message(DirectMessageDto dmDto){
-        template.convertAndSend("/sub/chat/room/" + dmDto.getReceiverId(), dmDto.getMessage());
-        dmService.sendDM(dmDto);
+    public void directMessage(DirectMessageDto dmDto){
+        template.convertAndSend("/sub/chat/room/" + dmDto.getRoomId(), dmDto.getMessage());
+//        dmService.sendDM(dmDto);
     }
 }

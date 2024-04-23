@@ -5,11 +5,9 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class DirectMessageDto {
-
+public class DirectMessageRoomInfoDto {
     private Long senderId;
     private String senderName;
-    private String roomId;
     private Long receiverId;
-    private String message;
+    private String roomId;
 }

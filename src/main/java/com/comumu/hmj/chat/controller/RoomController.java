@@ -1,5 +1,6 @@
 package com.comumu.hmj.chat.controller;
 
+import com.comumu.hmj.chat.dto.DirectMessageRoomInfoDto;
 import com.comumu.hmj.chat.repository.ChatroomRepository;
 import com.comumu.hmj.chat.repository.ChatRoomRepositorys;
 import com.comumu.hmj.user.dto.UserDto;
@@ -28,15 +29,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class RoomController {
 
     private final ChatRoomRepositorys repository;
+    private final UserService userService;
     private final UserRepository userRepository;
 
 
     //채팅방 목록 조회
     @GetMapping(value = "/users")
-    public ModelAndView users(){
+    public ModelAndView users(HttpServletRequest request){
         ModelAndView mv = new ModelAndView("chat/dmList");
-        mv.addObject("list", userRepository.findAll());
 
+        mv.addObject("list", userService.getAllUsers());
+//        mv.addObject("LoginUserId", userDto.getId());
         return mv;
     }
 
@@ -69,24 +72,24 @@ public class RoomController {
 
     //채팅방 생성
     @PostMapping("/dm")
-    public String newDmRoom(@RequestParam Long userId, RedirectAttributes rttr){
+    public String newDmRoom(@RequestParam Long receiverId, RedirectAttributes rttr){
 
-        log.info("# Create Chat Room , name: " + userId);
+        log.info("# Create Chat Room , name: " + receiverId);
 
         RestTemplate restTemplate = new RestTemplate();
         UserDto userDto = restTemplate.getForObject("http://localhost:8080/user", UserDto.class);
 
 
         rttr.addFlashAttribute("user", userDto);
-        return "redirect:/chat/dm?userId=" + userId;
+        return "redirect:/chat/dm?userId=" + receiverId;
     }
 
 
     //채팅방 조회 ### 통째로 리팩터링 해야함 ###
     @GetMapping("/dm")
-    public ModelAndView getRoom(@RequestParam Long userId, Model model, HttpServletRequest request){
+    public ModelAndView getRoom(@RequestParam Long receiverId, Model model, HttpServletRequest request){
 
-        log.info("# get Chat Room, roomID : " + userId);
+        log.info("# get Chat Room, roomID : " + receiverId);
 
         String token = "";
         Cookie[] cookies = request.getCookies();
@@ -102,11 +105,20 @@ public class RoomController {
         RestTemplate restTemplate = new RestTemplateBuilder()
                 .defaultHeader("Authorization", "Bearer " + token)
                 .build();
-
         UserDto userDto = restTemplate.getForObject("http://localhost:8080/user", UserDto.class);
 
+        String roomId = receiverId < userDto.getId() ? receiverId + "-" + userDto.getId() : userDto.getId() + "-" + receiverId;
+        DirectMessageRoomInfoDto roomInfoDto = DirectMessageRoomInfoDto.builder()
+                .senderId(userDto.getId())
+//                .senderName(userDto.getNickname()) // 추후 변경
+                .senderName(userDto.getEmail())
+                .receiverId(receiverId)
+                .roomId(roomId)
+                .build();
+
         ModelAndView mv = new ModelAndView("chat/dmRoom");
-        mv.addObject("user", userDto);
+
+        mv.addObject("roomInfo", roomInfoDto);
 
         return mv;
     }
