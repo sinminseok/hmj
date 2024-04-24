@@ -3,6 +3,8 @@ package com.comumu.hmj.chat.dto;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Builder
 public class DirectMessageDto {
@@ -12,4 +14,5 @@ public class DirectMessageDto {
     private String roomId;
     private Long receiverId;
     private String message;
+    private LocalDateTime sentAt;
 }

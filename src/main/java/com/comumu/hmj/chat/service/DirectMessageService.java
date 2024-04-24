@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -31,5 +33,19 @@ public class DirectMessageService {
         } catch (Exception e) {
             return e.getMessage();
         }
+    }
+
+
+
+    public List<DirectMessageDto> getMyDmList(Long userId) {
+        return dmRepository.findDmListByUserIds(userId, userService.getCurrentUserId()).stream().map(
+                dm -> DirectMessageDto.builder()
+                        .senderId(dm.getSenderId())
+                        .receiverId(dm.getReceiverId())
+                        .message(dm.getMessageContents())
+                        .sentAt(dm.getSentAt())
+                        .build()
+        ).collect(Collectors.toList());
+
     }
 }

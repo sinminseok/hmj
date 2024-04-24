@@ -13,7 +13,16 @@
             <h1>Room</h1>
         </div>
         <div>
-            <div id="msgArea" class="col"></div>
+            <div id="msgArea" class="col">
+                <th:block th:each="message : ${messages}">
+                    <div class='col-6'>
+                       <div class='alert alert-secondary'>
+                           <b th:if="${message.senderId} == ${roomInfo.senderId}">[[${roomInfo.senderName}]] : [[${message.message}]]</b>
+                           <b th:unless="${message.senderId} == ${roomInfo.senderId}">[[${roomInfo.receiverId}]] : [[${message.message}]]</b>
+                       </div>
+                    </div>
+                </th:block>
+            </div>
             <div class="col-6">
                 <div class="input-group mb-3">
                     <input type="text" id="msg" class="form-control">

@@ -1,5 +1,6 @@
 package com.comumu.hmj.chat.controller;
 
+import com.comumu.hmj.chat.dto.DirectMessageDto;
 import com.comumu.hmj.chat.dto.DirectMessageRoomInfoDto;
 import com.comumu.hmj.chat.repository.ChatroomRepository;
 import com.comumu.hmj.chat.repository.ChatRoomRepositorys;
@@ -21,6 +22,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -106,6 +110,9 @@ public class RoomController {
                 .defaultHeader("Authorization", "Bearer " + token)
                 .build();
         UserDto userDto = restTemplate.getForObject("http://localhost:8080/user", UserDto.class);
+        DirectMessageDto[] dmDtoArr = restTemplate.getForObject("http://localhost:8080/dm?userId=" + receiverId, DirectMessageDto[].class);
+
+        List<DirectMessageDto> dmDtos = Arrays.asList(dmDtoArr);
 
         String roomId = receiverId < userDto.getId() ? receiverId + "-" + userDto.getId() : userDto.getId() + "-" + receiverId;
         DirectMessageRoomInfoDto roomInfoDto = DirectMessageRoomInfoDto.builder()
@@ -118,7 +125,10 @@ public class RoomController {
 
         ModelAndView mv = new ModelAndView("chat/dmRoom");
 
+        log.info("### Message = {}", dmDtos.get(0).getMessage());
+
         mv.addObject("roomInfo", roomInfoDto);
+        mv.addObject("messages", dmDtos);
 
         return mv;
     }
